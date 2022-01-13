@@ -1,6 +1,6 @@
 import {inject} from '@loopback/core';
-import {DefaultCrudRepository} from '@loopback/repository';
-import {GateKeeperMongoDsDataSource} from '../datasources';
+import {DefaultCrudRepository, juggler} from '@loopback/repository';
+import {RefreshTokenServiceBindings} from '../keys';
 import {RefreshToken, RefreshTokenRelations} from '../models';
 
 export class RefreshTokenRepository extends DefaultCrudRepository<
@@ -9,7 +9,8 @@ export class RefreshTokenRepository extends DefaultCrudRepository<
   RefreshTokenRelations
 > {
   constructor(
-    @inject('datasources.gateKeeperMongoDS') dataSource: GateKeeperMongoDsDataSource,
+    @inject(`datasources.${RefreshTokenServiceBindings.DATASOURCE_NAME}`)
+    dataSource: juggler.DataSource,
   ) {
     super(RefreshToken, dataSource);
   }

@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {belongsTo, Entity, hasOne, model, property} from '@loopback/repository';
+import {Role} from './role.model';
+import {UserCredentials} from './user-credentials.model';
 
 @model({
   name: 'User',
@@ -14,7 +16,7 @@ export class User extends Entity {
     id: true,
     generated: true,
   })
-  id?: string;
+  id: string;
 
   @property({
     type: 'string',
@@ -104,6 +106,11 @@ export class User extends Entity {
   })
   isDeleted: boolean;
 
+  @hasOne(() => UserCredentials)
+  userCredentials: UserCredentials;
+
+  @belongsTo(() => Role)
+  rolesId: string;
 
   constructor(data?: Partial<User>) {
     super(data);

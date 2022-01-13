@@ -1,5 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
-
+import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {User} from '.';
 @model()
 export class RefreshToken extends Entity {
   @property({
@@ -7,19 +7,16 @@ export class RefreshToken extends Entity {
     id: true,
     generated: true,
   })
-  id?: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  userId: string;
+  id: string;
 
   @property({
     type: 'string',
     required: true,
   })
   refreshToken: string;
+
+  @belongsTo(() => User)
+  userId: string;
 
 
   constructor(data?: Partial<RefreshToken>) {

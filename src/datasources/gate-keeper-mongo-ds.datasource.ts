@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'gateKeeperMongoDS',
   connector: 'mongodb',
-  url: '',
+  url: 'mongodb+srv://selva:gkN5fM75H3QvJrs@ci-cd-test-app-db.evztz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   host: '',
   port: 0,
   user: '',
