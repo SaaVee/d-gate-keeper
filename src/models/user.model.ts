@@ -83,6 +83,18 @@ export class User extends Entity {
   emailVerified?: boolean;
 
   @property({
+    type: 'array',
+    itemType: 'string'
+  })
+  unitIds: string[];
+
+  @property({
+    type: 'array',
+    itemType: 'string'
+  })
+  regionIds: string[];
+
+  @property({
     type: 'boolean',
     default: true,
   })
