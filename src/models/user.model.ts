@@ -31,18 +31,29 @@ export class User extends Entity {
   @property({
     type: 'string',
     required: true,
+    jsonSchema: {
+      transform: ['toLowerCase'],
+    }
   })
   firstName: string;
 
   @property({
     type: 'string',
     required: true,
+    jsonSchema: {
+      transform: ['toLowerCase'],
+    }
   })
   lastName: string;
 
   @property({
     type: 'string',
     required: true,
+    jsonSchema: {
+      pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{5,512})',
+      minLength: 8,
+      maxLength: 512,
+    }
   })
   password: string;
 
@@ -58,6 +69,9 @@ export class User extends Entity {
     index: {
       unique: true,
     },
+    jsonSchema: {
+      transform: ['toLowerCase'],
+    }
   })
   username: string;
 
@@ -65,6 +79,16 @@ export class User extends Entity {
     type: 'string',
     index: {
       unique: true,
+    },
+    jsonSchema: {
+      format: 'email',
+      transform: ['toLowerCase'],
+      jsonSchema: {
+        pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{5,512})',
+      },
+      errorMessage: {
+        pattern: 'Invalid Email',
+      },
     },
   })
   email?: string;
