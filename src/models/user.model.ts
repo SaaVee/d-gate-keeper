@@ -53,6 +53,7 @@ export class User extends Entity {
       pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{5,512})',
       minLength: 8,
       maxLength: 512,
+      format: 'password'
     }
   })
   password: string;
